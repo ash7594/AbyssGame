@@ -62,7 +62,7 @@ window.addEventListener('resize', function(){resizeToMinimum(400,400)}, false);
 
 function keyPress(e) {
 	pressedKey = e.keyCode;
-	console.log(pressedKey);
+	//console.log(pressedKey);
 }
 
 function keyRelease(e) {
@@ -166,13 +166,15 @@ function entityUpdate() {
 	entityActuallyMoved += movingVelocity;
 
 	var calcBar = entityActuallyMoved%(360);
-	calcBar = parseInt(calcBar/(360/polySide));
+	calcBar = calcBar/(360/polySide);
 	if(calcBar>=0) {
-		entityBar = calcBar;
+		calcBar = Math.abs(calcBar);
+		entityBar = parseInt(calcBar);
 	} else {
-		entityBar = polySide-(calcBar)-1;
+		calcBar = Math.abs(calcBar);
+		entityBar = polySide-parseInt(calcBar)-1;
 	}
-
+	//console.log(entityBar+" "+entityActuallyMoved+" "+calcBar);
 	entity.x = windowCX + ((canvas.width<canvas.height)?canvas.width/3:canvas.height/3)*Math.cos(entity.a*Math.PI/180);
 	entity.y = windowCY + ((canvas.width<canvas.height)?canvas.width/3:canvas.height/3)*Math.sin(entity.a*Math.PI/180);
 }
