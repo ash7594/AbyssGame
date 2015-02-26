@@ -50,6 +50,7 @@ var colorShift6 = false;
 var colorChangeControlFlag = 0;
 var colorChangeMax = 4;
 //////////////////
+var backColorSwitch = false;
 var pressedKey = -1;
 var gameInterval;
 var died = 0;
@@ -65,6 +66,8 @@ window.addEventListener('resize', function(){resizeToMinimum(400,400)}, false);
 
 function keyPress(e) {
 	pressedKey = e.keyCode;
+	if(e.keyCode==32)
+		backColorSwitch = !backColorSwitch;
 	//console.log(pressedKey);
 }
 
@@ -283,6 +286,7 @@ function killfunc() {
 	document.getElementById("play").innerHTML = "PLAY<br>" + (levelCount*10) + "<br>Max:&nbsp" + hs;
 
 	///////////////////
+	backColorSwitch = false;
 	movingVelocity = 0;
 	entityActuallyMoved = (360/polySide)/2;
 	colorShift5 = 0;
@@ -367,7 +371,8 @@ function gameframe() {
 	entityUpdate();
 	if(level<polygons.length)
 		entityCollisionCheck();
-	backgroundGen2();
+	if(backColorSwitch) backgroundGen();
+	else backgroundGen2();
 	polygonRender();
 	entityRender();
 	speed();
