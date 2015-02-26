@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>Abyss</title>
+</head>
+
+<style>
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	background-color: #000000;
+	overflow: hidden;
+}
+
+#canvas{
+	border-radius: 10px;
+	transform: skew(0deg);
+}
+
+.body {
+	min-width: 400px;
+	min-height: 300px;
+}
+
+.play {
+	position:absolute;
+	background:rgba(0,0,0,0);
+	border:0;
+	color:rgba(0,0,0,1);
+	font-size: 7vmin;
+	font-family:arial;
+}
+
+.but {
+	position:absolute;
+	background:rgba(0,0,0,0);
+	background-color:rgba(255,0,0,1);
+	border:0;
+	border-radius: 7vmin;
+	font-family:arial;
+	color:rgba(255,255,255,1);
+	font-size: 5vmin;
+}
+
+.option {
+	color:rgba(0,0,255,1) !important;
+}
+
+</style>
+
+<body>
+
+<div>
+<center>
+<BR>	
+<strong><span id="title" style="color:red; font-size:7vmin">ABYSS</span></strong><BR>
+<span style="color:white; font-size:5vmin">
+	<ul><span class="option">(Option1)</span> &nbspUse arrow keys ( L,R )</ul>
+	<ul><span class="option">(Option2)</span> &nbspMouse click on L/R side</ul>
+</span>
+</center>
+</div>
+
+<canvas id="canvas"></canvas>
+<audio id="audio" src="music.mp3"></audio>
+<div id="menu">
+<!--canvas id="canvasMenu" style=""></canvas-->
+<button class="play" style="left:41%;width:18%;top:30%;height:40%;" id="play">PLAY</button>
+<button class="but" style="left:52%;width:8vmin;top:80%;height:7vmin;" data-side="10">10</button>
+<button class="but" style="left:44%;width:8vmin;top:80%;height:7vmin;" data-side="13">13</button>
+<button class="but" style="left:44%;width:8vmin;top:90%;height:7vmin;" data-side="15">15</button>
+<button class="but" style="left:52%;width:8vmin;top:90%;height:7vmin;" data-side="16">16</button>
+</div>
+
+<script type="text/javascript" src="abyss.js">
+</script>
+</body>
+</html>
