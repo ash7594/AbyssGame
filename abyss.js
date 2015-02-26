@@ -40,10 +40,13 @@ var colors2 = ["rgba(40,0,0,1)","rgba(80,0,0,1)","rgba(120,0,0,1)","rgba(160,0,0
 var colors3 = ["#FFFFFF","#FFCCFF","#FF99FF","#FF66FF","#FF33FF","#FF00FF"];
 var colorCode = ["FF","CC","99","66","33","00"];
 var colorCode2 = ["FF","EE","DD","CC","BB","AA","99","88","77","66","55","44","33","22","11","00"];
+var colorCode3 = ["88","77","66","55","44","33"];
 var colorShift2 = 0;
 var colorShift1 = 0;
 var colorShift3 = false;
 var colorShift4 = false;
+var colorShift5 = 0;
+var colorShift6 = false;
 var colorChangeControlFlag = 0;
 var colorChangeMax = 4;
 //////////////////
@@ -220,6 +223,33 @@ function backgroundGen() {
 	}
 }
 
+function backgroundGen2() {
+	for(var i=0;i<polySide;i++) {
+		ctx.beginPath();
+		ctx.moveTo(windowCX,windowCY);
+		ctx.lineTo(windowCX+backRad*Math.cos((windowA+i*360/polySide)*Math.PI/180),windowCY+backRad*Math.sin((windowA+i*360/polySide)*Math.PI/180));
+		i++;
+		ctx.lineTo(windowCX+backRad*Math.cos((windowA+i*360/polySide)*Math.PI/180),windowCY+backRad*Math.sin((windowA+i*360/polySide)*Math.PI/180));
+		ctx.lineTo(windowCX,windowCY);
+		i--;
+		var tem = colorCode3[i%colorCode3.length];
+		tem = parseInt(tem) + colorShift5;
+		tem.toString();
+		ctx.fillStyle = "#"+tem+tem+tem;
+		ctx.fill();
+		ctx.closePath();
+	}
+	if(colorShift6 == false)
+		colorShift5++;
+	else
+		colorShift5--; 
+	if(colorShift5 == 10) {
+		colorShift6 = true;
+	} else if(colorShift5 == 0) {
+		colorShift6 = false;
+	}
+}
+
 function entityCollisionCheck() {
 	if(entityBar != polygons[level].mbar && (polygons[level].r*Math.cos(360/polySide/2 * Math.PI / 180)) >= (entityRad-5) && (polygons[level].r*Math.cos(360/polySide/2 * Math.PI / 180)) <= (entityRad+5)) {
 		clearInterval(gameInterval);
@@ -244,6 +274,8 @@ function killfunc() {
 	///////////////////
 	movingVelocity = 0;
 	entityActuallyMoved = (360/polySide)/2;
+	colorShift5 = 0;
+	colorShift6 = false;
 
 	counter = 0;
 	windowA = 0;
@@ -324,7 +356,7 @@ function gameframe() {
 	entityUpdate();
 	if(level<polygons.length)
 		entityCollisionCheck();
-	backgroundGen();
+	backgroundGen2();
 	polygonRender();
 	entityRender();
 	speed();
