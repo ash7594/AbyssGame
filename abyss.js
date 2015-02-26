@@ -40,7 +40,7 @@ var colors2 = ["rgba(40,0,0,1)","rgba(80,0,0,1)","rgba(120,0,0,1)","rgba(160,0,0
 var colors3 = ["#FFFFFF","#FFCCFF","#FF99FF","#FF66FF","#FF33FF","#FF00FF"];
 var colorCode = ["FF","CC","99","66","33","00"];
 var colorCode2 = ["FF","EE","DD","CC","BB","AA","99","88","77","66","55","44","33","22","11","00"];
-var colorCode3 = ["88","77","66","55","44","33"];
+var colorCode3 = ["88","77","66","55","44","33","22","11"];
 var colorShift2 = 0;
 var colorShift1 = 0;
 var colorShift3 = false;
@@ -234,7 +234,18 @@ function backgroundGen2() {
 		i--;
 		var tem = colorCode3[i%colorCode3.length];
 		tem = parseInt(tem) + colorShift5;
-		tem.toString();
+		//tem.toString();
+		//console.log(tem);
+		if(tem>99) {
+			switch(parseInt(tem/10)) {
+				case 10: tem = "A"+parseInt(tem%10); break;
+				case 11: tem = "B"+parseInt(tem%10); break;
+				case 12: tem = "C"+parseInt(tem%10); break;
+				case 13: tem = "D"+parseInt(tem%10); break;
+				case 14: tem = "E"+parseInt(tem%10); break;
+				case 15: tem = "F"+parseInt(tem%10); break;
+			}
+		}
 		ctx.fillStyle = "#"+tem+tem+tem;
 		ctx.fill();
 		ctx.closePath();
@@ -242,8 +253,8 @@ function backgroundGen2() {
 	if(colorShift6 == false)
 		colorShift5++;
 	else
-		colorShift5--; 
-	if(colorShift5 == 10) {
+		colorShift5--;
+	if(colorShift5 == 66) {
 		colorShift6 = true;
 	} else if(colorShift5 == 0) {
 		colorShift6 = false;
