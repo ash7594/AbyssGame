@@ -331,6 +331,7 @@ function killfunc() {
 		document.getElementById("audio").pause();
 		document.getElementById("audio").currentTime = 0;
 	}
+	document.getElementById("container").style.display="block";
 	document.getElementById("menu").style.display="block";
 	MenuGenerate();
 }
@@ -512,6 +513,7 @@ playPad.addEventListener("click", function() {
         || el.mozRequestFullScreen
     ;
     rfs.call(el);*/
+    document.getElementById("container").style.display = "none";
     playSys();
 });
 
